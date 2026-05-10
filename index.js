@@ -66,14 +66,16 @@ window.addEventListener("DOMContentLoaded", async function () {
             !input_rep.value.trim()
         ) {
             alert("Não é possível inserir um pedido em branco");
-        } else if (itens.length === 0) { 
+            wait_modal.style.display = "none";
+        } else if (itens.length === 0) {
             alert("Você precisa adicionar pelo menos um item ao pedido.");
+            wait_modal.style.display = "none";
         } else {
             itens.forEach(item => {
                 item.obs_pedido = obs_pedido.value;
             });
 
-            
+
             fetch('http://192.168.1.176:65000/order_input', {
                 method: 'POST',
                 headers: {
@@ -81,49 +83,49 @@ window.addEventListener("DOMContentLoaded", async function () {
                 },
                 body: JSON.stringify(itens)
             })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Erro na conexão API');
-                }
-            })
-            .then(data => {
-                alert('Pedido inserido com sucesso!');
-                wait_modal.style.display = "none";
-                gerarPDF();
-                let campos = document.querySelectorAll(".entrada");
-                campos.forEach(campo => {
-                    campo.value = "";
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('Erro na conexão API');
+                    }
+                })
+                .then(data => {
+                    alert('Pedido inserido com sucesso!');
+                    wait_modal.style.display = "none";
+                    gerarPDF();
+                    let campos = document.querySelectorAll(".entrada");
+                    campos.forEach(campo => {
+                        campo.value = "";
+                    });
+
+                    itens.length = 0;
+                    renderizarTabela();
+                    Renderizar_card();
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert(`Erro ao Inserir Pedido!`);
+                    wait_modal.style.display = "none";
+
                 });
-    
-                itens.length = 0;
-                renderizarTabela();
-                Renderizar_card();
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert(`Erro ao Inserir Pedido!`);
-                wait_modal.style.display = "none";
-                
-            });
         }
     });
-    
+
 
     // ------------------------------------------------------
     // RENDERIZAR A TABELA DE PEDIDOS
 
     function renderizarTabela() {
         let tabela = document.querySelector("#productTable");
-    
- 
+
+
         let rows = tabela.querySelectorAll("tr:not(:first-child)");
         rows.forEach(row => {
             row.remove();
         });
     }
-    
+
     // ------------------------------------------------------
     // FILTRAR E SUGERIR PRODUTOS
 
@@ -131,27 +133,27 @@ window.addEventListener("DOMContentLoaded", async function () {
 
     function updateSuggestions(filter = "") {
         suggestions.innerHTML = "";
-    
+
         if (!filter.trim()) {
             suggestions.style.display = "none";
             return;
         }
-    
+
         let filterParts = filter.toLowerCase().split("%").filter(part => part.trim() !== "");
-    
+
         let filtered = products.filter(item => {
             let article = item.DESC.toLowerCase();
-    
+
             // O primeiro termo precisa estar no início do nome do artigo
             if (!article.startsWith(filterParts[0])) return false;
-    
+
             // Os demais termos podem estar em qualquer posição do nome
             return filterParts.slice(1).every(part => article.includes(part));
         });
-    
+
         if (filtered.length > 0) {
             suggestions.style.display = "flex";
-    
+
             filtered.forEach(item => {
                 let div = document.createElement("div");
                 div.textContent = item.DESC;
@@ -161,22 +163,22 @@ window.addEventListener("DOMContentLoaded", async function () {
                 };
                 suggestions.appendChild(div);
             });
-    
+
         } else {
             suggestions.style.display = "none";
         }
     }
-    
+
     // Evento de input no campo de busca
     searchBox.addEventListener("input", (e) => updateSuggestions(e.target.value));
-    
+
     // Fecha sugestões ao clicar fora
     document.addEventListener("click", (e) => {
         if (!searchBox.contains(e.target) && !suggestions.contains(e.target)) {
             suggestions.style.display = "none";
         }
     });
-    
+
 
     // ------------------------------------------------------
     // MODAL DE ADICAO DE PRODUTOS
@@ -197,17 +199,17 @@ window.addEventListener("DOMContentLoaded", async function () {
             alert("Os Campos com * São obrigatórios");
             return;
         }
-    
+
         modal.style.display = "block";
     });
 
-    reiniciar_btn.addEventListener("click", function(){
+    reiniciar_btn.addEventListener("click", function () {
 
         obs_pedido.value = "";
-        renderizarTabela();  
-        Renderizar_card();  
+        renderizarTabela();
+        Renderizar_card();
     });
-    
+
     // ------------------------------------------------------
     // ARRAY PARA ITENS E MONTAR O PEDIDO
 
@@ -217,15 +219,15 @@ window.addEventListener("DOMContentLoaded", async function () {
         let productName = searchBox.value.trim();
         let quantity = quantityBox.value.trim();
         let observation = obs_item.value.trim();
-    
+
         if (productName === "" || quantity === "" || isNaN(quantity)) {
             alert("Campo Produto e QTD não podem ser vazios");
             return;
         }
-    
+
         let product = products.find(item => item.DESC === productName);
         let productCode = product ? product.ID : "Desenvolver";
-    
+
         let newItem = {
             data: data,
             cliente: input_empresa.value,
@@ -242,9 +244,9 @@ window.addEventListener("DOMContentLoaded", async function () {
             qtd: quantity,
             obs_item: observation,
         };
-        
+
         itens.push(newItem);
-    
+
         let row = document.createElement("tr");
         row.innerHTML = `
             <td>${productCode}</td>
@@ -253,9 +255,9 @@ window.addEventListener("DOMContentLoaded", async function () {
             <td contenteditable="true" class="editable-obs" style="outline: none">${observation}</td>
             <td><img src="./trash-bin.png" class="btn-delete" style="cursor: pointer;"></td>
         `;
-    
+
         productTable.appendChild(row);
-    
+
         row.querySelector(".btn-delete").addEventListener("click", function () {
             let index = itens.findIndex(item => item.produto === productName && item.qtd === quantity);
             if (index !== -1) {
@@ -264,25 +266,25 @@ window.addEventListener("DOMContentLoaded", async function () {
             row.remove();
             Renderizar_card();
         });
-    
+
         searchBox.value = "";
         quantityBox.value = "";
         obs_item.value = "";
         Renderizar_card();
     });
-    
-    
+
+
     function Renderizar_card() {
         const cardsContainer = document.getElementById("cardsContainer");
         cardsContainer.innerHTML = "";
-    
+
         let tabela = document.getElementById("productTable");
         let rows = tabela.querySelectorAll("tr:not(:first-child)");
-    
+
         rows.forEach(row => {
             let card = document.createElement("div");
             card.classList.add("card");
-                  
+
             card.innerHTML = `
                     <p>${row.cells[1].innerText}</p>
                     <p><strong>Código:</strong> ${row.cells[0].innerText}</p>
@@ -294,25 +296,25 @@ window.addEventListener("DOMContentLoaded", async function () {
                 `;
 
 
-    
+
             card.querySelector(".btn-delete").addEventListener("click", function () {
                 let productName = row.cells[1].innerText;
                 let quantity = row.cells[2].innerText;
-    
+
                 let index = itens.findIndex(item => item.produto === productName && item.qtd === quantity);
                 if (index !== -1) {
                     itens.splice(index, 1);
                 }
-    
+
                 row.remove();
                 Renderizar_card();
             });
-    
+
             cardsContainer.appendChild(card);
         });
     }
-    
-    
+
+
     // ------------------------------------------------------
     // SALVAR O PDF
 
