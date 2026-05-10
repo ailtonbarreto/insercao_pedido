@@ -1,0 +1,896 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("Roboto-Medium.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root{
+    --bg: #ffffff;
+    --text-size: 0.9vw;
+    --azul: #000000;
+    --verde: #08cf62;
+    --azul-escuro: #000000;
+    --cor-tabela: #D9D9D9;
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+
+body{
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    padding: 1vw 4vw;
+    width: 100vw;
+    justify-content: space-between;
+}
+
+#icone_focal{
+    width: 10vw;
+}
+
+.div-titulo{
+    display: flex;
+}
+
+header h2{
+    color: var(--azul);
+    text-align: left;
+}
+
+
+#fimec{
+    width: 15vw;
+}
+
+
+.pedido{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    width: 100vw;
+    padding: 1vw 4vw;
+    margin-bottom: 3vw;
+}
+
+.dados_pedido{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+.dados_pedido .linha-1,
+.dados_pedido .linha-2,
+.dados_pedido .linha-3{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--azul);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+input{
+    text-transform: capitalize;
+    margin-left: 0.5vw;
+}
+
+input[type="text"] {
+    color: var(--azul);
+}
+
+
+input[type="text"]:-webkit-autofill,
+input[type="text"]:-webkit-autofill:hover, 
+input[type="text"]:-webkit-autofill:focus, 
+input[type="text"]:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--azul) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+span{
+    color: red;
+}
+
+.inputs{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+#input1{
+    width: 60%;
+}
+
+#input3{
+    width: 45%;
+}
+
+
+.inputs label{
+    color: var(--azul-escuro);
+    display: block;
+}
+
+.inputs input{
+    border: none;
+    outline: none;
+    font-size: 1.5vw;
+    color: var(--azul);
+    width: 90%;
+}
+
+
+label{
+    margin-right: 1vw;
+    font-size: 1.5vw;
+}
+
+#select{
+    width: 5vw;
+    font-size: 1.5vw;
+    color: var(--azul);
+}
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+#contato {
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.cards-container{
+    display: none;
+}
+
+/* ------------------------------------------ */
+/* SECCAO QUE ACRESCENTA ITEM NOVO: */
+
+/* .div-add{
+    display: flex;
+    margin: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 1vw;
+    width: 96vw;
+    position: relative;
+
+}
+
+.mtd_pagamento{
+    display: flex;
+    flex-direction: row;
+    
+} */
+
+.div-add{
+    display: flex;
+    margin: 0;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 1vw;
+    width: 96vw;
+    position: relative;
+
+}
+
+
+#icone_add_produto{
+    background-color: var(--verde);
+    width: 10vw;
+    font-size: 1vw;
+    color: var(--bg);
+    padding: 0.3vw 0.2vw;
+    border: none;
+    border-radius: 0.2vw;
+    cursor: pointer;
+}
+
+/* ------------------------------------------ */
+/* TABELA DOS PRODUTOS: */
+
+.container-pedido{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2vw;
+    width: 100vw;
+}
+
+
+.table{
+    background-color: var(--cor-tabela);
+}
+
+
+#productTable {
+    width: 92vw;
+    border-collapse: collapse;
+    padding: 1vw 4vw;
+
+}
+
+#productTable th{
+    background-color: var(--azul-escuro);
+    font-size: 1.2vw;
+    color: var(--bg);
+    font-weight: 100;
+}
+
+#productTable th, #productTable td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid var(--cor-tabela);
+}
+
+#productTable tr:nth-child(even) {
+    background-color: var(--cor-tabela);
+}
+
+#productTable tr:hover {
+    background-color: #ddd;
+}
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.btn-delete{
+    width: 2vw;
+}
+
+/* ----------------------------------- */
+#loading-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #000000;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* -------------------------------------------------- */
+/* MODAL SATANICO */
+
+.modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bg);
+    border: 0.2vw solid var(--azul-escuro);
+    flex-direction: column;
+    width: 90vw;
+    height: 40vw; 
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+    z-index: 1000;
+    border-radius: 0.5vw;
+    display: none;
+}
+
+.botao{
+    display: flex;
+    text-align: center;
+    flex-direction: center;
+    align-items: center;
+}
+
+.produto{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1vw;
+}
+
+#searchBox{
+    display: flex;
+    width: 40vw;
+    border-radius: 0.3vw;
+    padding: 0.5vw;
+    outline: none;
+    border: 1px solid var(--azul-escuro);
+    color: var(--azul);
+}
+
+.qtd{
+    gap: 0.3vw;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+    color: var(--azul-escuro);
+    width: 10%;
+
+}
+
+.qtd input{
+    width: 50%;
+    outline: none;
+    border: 1px solid var(--azul-escuro);
+    border-radius: 0.3vw;
+    padding: 0.5vw;
+}
+
+
+#add-btn{
+    padding: 0.2vw 1vw;
+    height: 2vw;
+    background-color: var(--verde);
+    border: none;
+    color: var(--bg);
+    border-radius: 0.3vw;
+    cursor: pointer;
+}
+
+.btn-fechar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 1vw;
+}
+
+.btn-fechar h2{
+    color: var(--azul);
+}
+
+.obs label{
+    color: var(--azul-escuro);
+}
+
+#obs_item{
+    width: 20vw;
+    outline: none;
+    border: 1px solid var(--azul-escuro);
+    border-radius: 0.3vw;
+    padding: 0.5vw;
+}
+
+#btn-fechar{
+    padding: 0.1vw 0.6vw;
+    font-size: 2vw;
+    background-color: red;
+    border: none;
+    color: var(--bg);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.container-produtos{
+    margin-top: 1vw;
+    width: 100%;
+}
+
+/* ----------------------------------------------------- */
+/* CAIXA DE SUSGESTAO PARA O USUARIO CLICAR */
+
+.suggestions{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 28vw;
+}
+
+.suggestions div{
+    text-align: left;
+    cursor: pointer;
+    color: var(--azul-escuro);
+    line-height: 1.5vw;
+}
+
+
+/* ----------------------------------------------------- */
+/* OBSERVACAO DOS PEDIDOS */
+
+.obs_pedido{
+    display: flex;
+    justify-content: left;
+    text-align: left;
+    width: 92vw;
+    flex-direction: column;
+}
+
+.obs_pedido label{
+    color: var(--azul);
+}
+
+#obs_pedido{
+    display: flex;
+    padding: 5px;
+    background-color: var(--cor-tabela);
+    border: none;
+    height: 5vw;
+    outline: none;
+    margin: 0;
+}
+
+#divisor{
+    display: none;
+}
+
+/* ----------------------------------------------------- */
+/* BOTOES INFERIOES */
+
+.bts{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    padding: 1vw 4vw;
+}
+
+#salvar_pdf{
+    background-color: rgb(236, 5, 197);
+    padding: 0.7vw 0.5vw;
+    border: none;
+    color: var(--bg);
+    border-radius: 0.2vw;
+    width: 20%;
+    font-size: 1.5vw;
+    cursor: pointer;
+}
+
+#reiniciar-btn{
+    background-color: orange;
+    padding: 0.7vw 0.5vw;
+    border: none;
+    color: var(--bg);
+    border-radius: 0.2vw;
+    width: 20%;
+    font-size: 1.5vw;
+    cursor: pointer;
+}
+
+#concluir-btn{
+    background-color: var(--verde);
+    padding: 0.7vw 0.5vw;
+    border: none;
+    color: var(--bg);
+    border-radius: 0.2vw;
+    width: 20%;
+    font-size: 1.5vw;
+    cursor: pointer;
+}
+/* -----------------------------------------------------------------------*/
+/* VERSAO TABLET */
+
+/* @media (max-width: 900px) {
+
+    body{
+        height: 100vh;
+        justify-content: space-between;
+        padding: 5vw 0 20vw 0;
+    }
+
+    #icone_focal{
+        width: 15vw;
+    }
+
+    #fimec{
+        width: 20vw;
+    }
+
+    .inputs label{
+        font-size: 2vw;
+    }
+
+    .div-add{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 1vw;
+        width: 100vw;
+        margin-top: -10vw;
+    }
+
+    #icone_add_produto{
+        background-color: var(--verde);
+        font-size: 2vw;
+        padding: 1vw 3vw;
+        color: var(--bg);
+        width: 30vw;
+        border: none;
+        border-radius: 1vw;
+        cursor: pointer;
+    }
+
+    .pedido{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        width: 100vw;
+        margin-bottom: -15vw;
+        margin-top: -20vw;
+    }
+
+    .container-pedido{
+        margin-top: -25vw;
+        margin-bottom: -25vw;
+    }
+    
+
+    .dados_pedido{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        flex-direction: column;
+        gap: 5vw;
+    }
+
+    .modal{
+        position: fixed;
+        background-color: var(--bg);
+        flex-direction: column;
+        padding-top: 5vw;
+        width: 100vw;
+        height: 100vh; 
+    }
+
+    .btn-fechar{
+        margin-bottom: 3vw;
+    }
+
+    #add-btn{
+        padding: 1vw 3vw;
+        height: 4vw;
+        border-radius: 0.3vw;
+        cursor: pointer;
+    }
+
+    #suggestions{
+        max-height: 90vh;
+    }
+
+    .suggestions div{
+        line-height: 4vw;
+    }
+    
+
+} */
+
+/* -----------------------------------------------------------------------*/
+/* VERSAO MOBILE */
+
+@media (max-width: 768px) {
+
+    body{
+        height: 100vh;
+        padding-top: 5vw;
+        overflow-x: scroll;
+    }
+
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .div-icon img {
+        display: none;
+    }
+
+    .linha-1, .linha-2, .linha-3 {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        border-bottom: none !important;
+    }
+
+    input{
+        border: none;
+        border-bottom: 2px solid var(--azul) !important;
+        padding-bottom: 5px;
+        outline: none;
+    }
+
+
+    .inputs input{
+        width: 90vw;
+    }
+    
+    .inputs label{
+        text-align: left;
+        font-size: 5vw;
+    }
+
+    #cliente, #end, #cnpj, #cidade, #cep, #contato, #telefone, #rep{
+        font-size: 4vw;
+    }
+
+
+    .inputs{
+        flex-direction: column;
+        font-size: 4vw;
+        width: 100%;
+    }
+
+    #input1{
+        width: 100%;
+    }
+    
+    #input3{
+        width: 100%;
+    }
+    
+    #input5{
+        display: flex;
+        flex-direction: row;
+    }
+
+    #divisor{
+        display: block;
+        border: 1.5px solid var(--azul);
+        width: 90vw;
+    }
+
+    #select{
+        width: 20vw;
+        font-size: 5vw;
+        
+    }
+
+    option{
+        font-size: 4vw;
+        
+    }
+
+    table{
+        display: none;
+    }
+
+    .cards-container{
+        background-color: #D9D9D9;
+        border-radius: 1vw;
+        width: 90vw;
+        padding: 3vw;
+        display: block;
+        text-align: left;
+        color: var(--azul-escuro);
+    }
+
+    .cards-container p{
+        font-size: 4vw;
+    }
+
+    .btn-delete{
+        width: 7vw;
+        margin-top: 2vw;
+    }
+
+    /* --------------------------------------------------------- */
+    
+    .modal{
+        position: fixed;
+        background-color: var(--bg);
+        flex-direction: column;
+        padding-top: 10vw;
+        width: 100vw;
+        height: 100vh; 
+    }
+ 
+    /* SECCAO QUE ACRESCENTA ITEM NOVO --------------------------*/
+
+    .div-add{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 1vw;
+        width: 100vw;
+
+    }
+
+    #icone_add_produto{
+        background-color: var(--verde);
+        width: 90vw;
+        font-size: 5vw;
+        color: var(--bg);
+        padding: 3vw;
+        border: none;
+        border-radius: 1vw;
+        cursor: pointer;
+    }
+
+    #cardsContainer{
+        min-height: 20vw;
+    }
+
+    /* --------------------------------------------------------- */
+
+    .produto{
+        flex-direction: column;
+        gap: 1vw;
+    }
+    
+    
+    .btn-fechar{
+        align-items: center;
+    }
+
+    #btn-fechar{
+        width: 8vw;
+        font-size: 7vw;
+    }
+
+    #searchBox{
+        display: flex;
+        width: 90vw;
+        border-radius: 0.3vw;
+        padding: 0.5vw;
+        outline: none;
+        border: 1px solid var(--azul-escuro);
+        color: var(--azul);
+        font-size: 5vw;
+    }
+
+    .qtd{
+        justify-content: left;
+        flex-direction: column;
+        width: 90vw;
+    
+    }
+
+    .qtd label{
+        font-size: 5vw;
+    }
+    
+    .qtd input{
+        width: 90vw;
+        font-size: 5vw;
+    }
+
+    .obs{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .obs label{
+        font-size: 5vw;
+    }
+    
+    #obs_item{
+        width: 90vw;
+        outline: none;
+        border-radius: 0.3vw;
+        padding: 0.5vw;
+        font-size: 5vw;
+    }
+    
+
+    #add-btn{
+        padding: 0.2vw 10vw;
+        width: 90vw;
+        font-size: 5vw;
+        height: 8vw;
+        background-color: var(--verde);
+        border: none;
+        color: var(--bg);
+    }
+
+    .container-produtos{
+        height: 100vh;
+    }
+
+    #suggestions{
+        max-height: 55vh;
+    }
+
+    .suggestions div{
+        line-height: 5vw;
+    }
+
+    .obs_pedido label{
+        font-size: 6vw;
+    }
+
+    .obs_pedido{
+        width: 90vw;
+    }
+
+  
+    #obs_pedido{
+        display: flex;
+        font-size: 5vw;
+        padding: 1vw;
+        background-color: var(--cor-tabela);
+        border-bottom: none !important;
+        border: none;
+        border-radius: 1vw;
+        height: 20vw;
+        outline: none;
+        margin: 2vw 0 2vw 0;
+        width: 90vw;
+
+    }
+    
+
+    /* --------------------------------------------------------- */
+
+
+    .bts {
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 0 10vw;
+        gap: 2vw;
+        margin: 5vw auto;
+    }
+
+    #reiniciar-btn {
+        width: 100%;
+        font-size: 4vw;
+        padding: 4vw;
+        border-radius: 1vw;
+    }
+
+    #salvar_pdf {
+        width: 100%;
+        font-size: 4vw;
+        padding: 4vw;
+        border-radius: 1vw;
+    }
+
+    #concluir-btn {
+        width: 100%;
+        font-size: 4vw;
+        padding: 4vw;
+        border-radius: 1vw;
+    }
+
+}
