@@ -671,6 +671,7 @@ input[type="number"]::-webkit-outer-spin-button {
     #input5{
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
     }
 
     #divisor{
@@ -682,6 +683,7 @@ input[type="number"]::-webkit-outer-spin-button {
     #select{
         width: 20vw;
         font-size: 5vw;
+        margin-right: 4vw;
         
     }
 
