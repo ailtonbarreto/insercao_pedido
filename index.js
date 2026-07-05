@@ -8,7 +8,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     // ------------------------------------------------------
     // VARIAVEIS DO CLIENTE
 
-    const btn_concluir = document.getElementById("concluir-btn");
+
     let input_empresa = document.getElementById("cliente");
     let input_cnpj = document.getElementById("cnpj");
     let input_end = document.getElementById("end");
@@ -47,68 +47,6 @@ window.addEventListener("DOMContentLoaded", async function () {
         const teclasPermitidas = ["Backspace", "Tab", "Delete", "ArrowLeft", "ArrowRight", ".", "/", "-"];
         if (!(/^[0-9]$/.test(event.key) || teclasPermitidas.includes(event.key))) {
             event.preventDefault();
-        }
-    });
-
-    // ------------------------------------------------------
-    // CONLUIR PEDIDO
-
-    btn_concluir.addEventListener("click", function () {
-
-        wait_modal.style.display = "flex";
-
-        if (
-            !input_empresa.value.trim() ||
-            !input_city.value.trim() ||
-            !input_uf.value.trim() ||
-            !input_contato.value.trim() ||
-            !input_fone_number.value.trim() ||
-            !input_rep.value.trim()
-        ) {
-            alert("Não é possível inserir um pedido em branco");
-            wait_modal.style.display = "none";
-        } else if (itens.length === 0) {
-            alert("Você precisa adicionar pelo menos um item ao pedido.");
-            wait_modal.style.display = "none";
-        } else {
-            itens.forEach(item => {
-                item.obs_pedido = obs_pedido.value;
-            });
-
-
-            fetch('http://192.168.1.176:65000/order_input', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(itens)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    } else {
-                        throw new Error('Erro na conexão API');
-                    }
-                })
-                .then(data => {
-                    alert('Pedido inserido com sucesso!');
-                    wait_modal.style.display = "none";
-                    gerarPDF();
-                    let campos = document.querySelectorAll(".entrada");
-                    campos.forEach(campo => {
-                        campo.value = "";
-                    });
-
-                    itens.length = 0;
-                    renderizarTabela();
-                    Renderizar_card();
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                    alert(`Erro ao Inserir Pedido!`);
-                    wait_modal.style.display = "none";
-
-                });
         }
     });
 

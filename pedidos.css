@@ -474,7 +474,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 #salvar_pdf{
-    background-color: rgb(236, 5, 197);
+    background-color: rgb(3, 175, 228);
     padding: 0.7vw 0.5vw;
     border: none;
     color: var(--bg);
@@ -495,113 +495,6 @@ input[type="number"]::-webkit-outer-spin-button {
     cursor: pointer;
 }
 
-#concluir-btn{
-    background-color: var(--verde);
-    padding: 0.7vw 0.5vw;
-    border: none;
-    color: var(--bg);
-    border-radius: 0.2vw;
-    width: 20%;
-    font-size: 1.5vw;
-    cursor: pointer;
-}
-/* -----------------------------------------------------------------------*/
-/* VERSAO TABLET */
-
-/* @media (max-width: 900px) {
-
-    body{
-        height: 100vh;
-        justify-content: space-between;
-        padding: 5vw 0 20vw 0;
-    }
-
-    #icone_focal{
-        width: 15vw;
-    }
-
-    #fimec{
-        width: 20vw;
-    }
-
-    .inputs label{
-        font-size: 2vw;
-    }
-
-    .div-add{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-bottom: 1vw;
-        width: 100vw;
-        margin-top: -10vw;
-    }
-
-    #icone_add_produto{
-        background-color: var(--verde);
-        font-size: 2vw;
-        padding: 1vw 3vw;
-        color: var(--bg);
-        width: 30vw;
-        border: none;
-        border-radius: 1vw;
-        cursor: pointer;
-    }
-
-    .pedido{
-        display: flex;
-        justify-content: center;
-        text-align: center;
-        flex-direction: column;
-        width: 100vw;
-        margin-bottom: -15vw;
-        margin-top: -20vw;
-    }
-
-    .container-pedido{
-        margin-top: -25vw;
-        margin-bottom: -25vw;
-    }
-    
-
-    .dados_pedido{
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        flex-direction: column;
-        gap: 5vw;
-    }
-
-    .modal{
-        position: fixed;
-        background-color: var(--bg);
-        flex-direction: column;
-        padding-top: 5vw;
-        width: 100vw;
-        height: 100vh; 
-    }
-
-    .btn-fechar{
-        margin-bottom: 3vw;
-    }
-
-    #add-btn{
-        padding: 1vw 3vw;
-        height: 4vw;
-        border-radius: 0.3vw;
-        cursor: pointer;
-    }
-
-    #suggestions{
-        max-height: 90vh;
-    }
-
-    .suggestions div{
-        line-height: 4vw;
-    }
-    
-
-} */
 
 /* -----------------------------------------------------------------------*/
 /* VERSAO MOBILE */
@@ -611,7 +504,6 @@ input[type="number"]::-webkit-outer-spin-button {
     body{
         height: 100vh;
         padding-top: 5vw;
-        overflow-x: scroll;
     }
 
     header {
